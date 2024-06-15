@@ -10,11 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { JobCardComponent } from './job-card/job-card.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AdminComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, AdminComponent, JobCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

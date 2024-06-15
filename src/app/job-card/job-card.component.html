@@ -1,0 +1,13 @@
+<div class="job-card">
+  <h3 class="job-title">{{ job.jobTitle }}</h3>
+  <h4 class="company-name">{{ job.companyName }}</h4>
+  <p class="location"><strong>Location:</strong> {{ job.location }}</p>
+  <p class="job-type"><strong>Type:</strong> {{ job.jobType }}</p>
+  <p class="job-description">{{ job.jobDescription }}</p>
+  <div class="skills">
+    <strong>Skills:</strong>
+    <ul>
+      <li *ngFor="let skill of job.skills">{{ skill }}</li>
+    </ul>
+  </div>
+</div>
