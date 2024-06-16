@@ -12,9 +12,10 @@ import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobCardComponent } from './components/job-card/job-card.component';
+import { JobFormComponent } from './components/job-form/job-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AdminComponent, JobCardComponent],
+  declarations: [AppComponent, HomeComponent, AdminComponent, JobCardComponent, JobFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

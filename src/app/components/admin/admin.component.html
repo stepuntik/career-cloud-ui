@@ -1,41 +1,7 @@
 <h2>Admin Page</h2>
 
 <h3>Create New Job</h3>
-
-<form [formGroup]="jobForm" (ngSubmit)="submitForm()" class="job-form">
-  <div>
-    <label for="jobTitle">Job Title</label>
-    <input type="text" id="jobTitle" formControlName="jobTitle" />
-  </div>
-  <div>
-    <label for="companyName">Company Name</label>
-    <input type="text" id="companyName" formControlName="companyName" />
-  </div>
-  <div>
-    <label for="location">Location</label>
-    <input type="text" id="location" formControlName="location" />
-  </div>
-  <div>
-    <label for="jobType">Job Type</label>
-    <input type="text" id="jobType" formControlName="jobType" />
-  </div>
-  <div>
-    <label for="jobDescription">Job Description</label>
-    <textarea id="jobDescription" formControlName="jobDescription"></textarea>
-  </div>
-  <div formArrayName="skills" class="skills">
-    <label for="skills">Skills</label>
-    <div
-      *ngFor="let skill of skills.controls; let i = index"
-      class="skill-item"
-    >
-      <input type="text" [formControlName]="i" />
-      <button type="button" (click)="removeSkill(i)">Remove Skill</button>
-    </div>
-    <button type="button" (click)="addSkill()">Add Skill</button>
-  </div>
-  <button type="submit">Create Job</button>
-</form>
+<app-job-form></app-job-form>
 
 <h3>Existing Jobs</h3>
 
