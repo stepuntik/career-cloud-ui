@@ -1,0 +1,14 @@
+<nav>
+  <ul>
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/admin">Admin</a></li>
+    <ng-container *ngIf="user; else loginButton">
+      <li>Welcome, {{ user.displayName }}!</li>
+      <button (click)="logout()">Logout</button>
+    </ng-container>
+    <ng-template #loginButton>
+      <li>Welome, Guest!</li>
+      <button (click)="loginWithGoogle()">Login with Google</button>
+    </ng-template>
+  </ul>
+</nav>

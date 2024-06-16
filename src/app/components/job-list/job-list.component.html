@@ -1,0 +1,5 @@
+<ul class="job-list">
+  <ng-container *ngFor="let job of jobs">
+    <app-job-card [job]="job" [isAdminView]="true"></app-job-card>
+  </ng-container>
+</ul>

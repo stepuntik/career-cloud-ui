@@ -13,9 +13,11 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobCardComponent } from './components/job-card/job-card.component';
 import { JobFormComponent } from './components/job-form/job-form.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { JobListComponent } from './components/job-list/job-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AdminComponent, JobCardComponent, JobFormComponent],
+  declarations: [AppComponent, HomeComponent, AdminComponent, JobCardComponent, JobFormComponent, NavbarComponent, JobListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

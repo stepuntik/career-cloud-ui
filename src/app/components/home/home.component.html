@@ -10,8 +10,4 @@
   <option *ngFor="let type of jobTypes" [value]="type">{{ type }}</option>
 </select>
 
-<ul class="job-list">
-  <ng-container *ngFor="let job of filteredJobs">
-    <app-job-card [job]="job"></app-job-card>
-  </ng-container>
-</ul>
+<app-job-list [jobs]="filteredJobs"></app-job-list>

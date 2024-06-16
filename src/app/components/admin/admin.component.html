@@ -1,12 +1,11 @@
 <h2>Admin Page</h2>
 
-<h3>Create New Job</h3>
-<app-job-form></app-job-form>
+<div class="add-job">
+  <h3>Add New Job</h3>
+  <button class="add-button" (click)="addJob()">{{ symbol }}</button>
+</div>
+<app-job-form *ngIf="showForm"></app-job-form>
 
 <h3>Existing Jobs</h3>
 
-<ul class="job-list">
-  <ng-container *ngFor="let job of jobs">
-    <app-job-card [job]="job" [isAdminView]="true"></app-job-card>
-  </ng-container>
-</ul>
+<app-job-list [jobs]="jobs" [isAdminView]="true"></app-job-list>

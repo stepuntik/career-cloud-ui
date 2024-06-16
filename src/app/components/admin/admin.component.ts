@@ -11,6 +11,8 @@ import { Job } from 'src/app/interfaces/job.interface';
 })
 export class AdminComponent implements OnInit {
   jobs: Job[] = [];
+  showForm: boolean = false;
+  symbol: string = '+';
 
   constructor(private jobService: JobService) {}
 
@@ -18,5 +20,10 @@ export class AdminComponent implements OnInit {
     this.jobService.jobs$.subscribe((jobs) => {
       this.jobs = jobs;
     });
+  }
+
+  addJob(): void {
+    this.showForm = !this.showForm;
+    this.symbol = this.showForm ? '-' : '+';
   }
 }
