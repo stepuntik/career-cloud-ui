@@ -6,6 +6,7 @@ import { FirestoreService } from './services/firebase.service';
 import { JobService } from './services/job.service';
 
 import { Job } from './interfaces/job.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
   constructor(
     private firestoreService: FirestoreService,
     private jobService: JobService,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.firestoreService.getData('data').subscribe((data) => {
@@ -45,6 +47,7 @@ export class AppComponent implements OnInit {
   async logout(): Promise<void> {
     try {
       await this.afAuth.signOut();
+      this.router.navigate(['/']);
     } catch (error) {
       console.error('Error logging out:', error);
     }

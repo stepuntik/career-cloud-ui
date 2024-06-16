@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Job } from '../interfaces/job.interface';
+import { Job } from '../../interfaces/job.interface';
 
 @Component({
   selector: 'app-job-card',
@@ -8,4 +8,9 @@ import { Job } from '../interfaces/job.interface';
 })
 export class JobCardComponent {
   @Input() job!: Job;
+  @Input() isAdminView: boolean = false;
+
+  editJob(): void {}
+
+  deleteJob(): void {}
 }

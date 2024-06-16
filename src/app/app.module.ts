@@ -8,10 +8,10 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { AdminComponent } from './pages/admin/admin.component';
+import { HomeComponent } from './components/home/home.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JobCardComponent } from './job-card/job-card.component';
+import { JobCardComponent } from './components/job-card/job-card.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, AdminComponent, JobCardComponent],
