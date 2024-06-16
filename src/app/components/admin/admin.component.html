@@ -2,13 +2,18 @@
 
 <div class="add-job">
   <h3>Add New Job</h3>
-  <button class="add-button" (click)="addJob()">{{ symbol }}</button>
+  <button class="add-button" (click)="toggleForm()">{{ symbol }}</button>
 </div>
 <app-job-form
   *ngIf="showForm"
-  (formSubmitted)="handleFormSubmit()"
+  [jobToEdit]="selectedJob"
+  (formSubmitted)="onFormSubmitted()"
 ></app-job-form>
 
 <h3>Existing Jobs</h3>
 
-<app-job-list [jobs]="jobs" [isAdminView]="true"></app-job-list>
+<app-job-list
+  [jobs]="jobs"
+  [isAdminView]="true"
+  (editJobEvent)="onEditJob($event)"
+></app-job-list>

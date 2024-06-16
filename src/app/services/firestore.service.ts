@@ -14,10 +14,6 @@ export class FirestoreService {
     return this.firestore.collection(collectionName).doc(id).set(data);
   }
 
-  // getData(collectionName: string): Observable<any[]> {
-  //   return this.firestore.collection(collectionName).valueChanges();
-  // }
-
   getData(collectionName: string): Observable<any[]> {
     return this.firestore
       .collection(collectionName)
@@ -31,6 +27,10 @@ export class FirestoreService {
           })
         )
       );
+  }
+
+  updateData(collectionName: string, id: string, data: Job): Promise<void> {
+    return this.firestore.collection(collectionName).doc(id).update(data);
   }
 
   deleteData(collectionName: string, id: string): Promise<void> {

@@ -1,8 +1,8 @@
 // job.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Job } from '../interfaces/job.interface';
 import { FirestoreService } from './firestore.service';
+import { Job } from '../interfaces/job.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -25,15 +25,21 @@ export class JobService {
     this.jobsSubject.next(jobs);
   }
 
-  addJob(job: Job): Promise<void> {
-    return this.firestoreService.addData('data', job).then(() => {
-      this.getJobs();
-    });
+  async addJob(job: Job): Promise<void> {
+    await this.firestoreService.addData('data', job);
+    this.getJobs();
   }
 
-  deleteJob(id: string): Promise<void> {
-    return this.firestoreService.deleteData('data', id).then(() => {
-      this.getJobs();
-    });
+  async updateJob(job: Job): Promise<void> {
+    if (!job.id) {
+      return Promise.reject('Job ID is required for updating');
+    }
+    await this.firestoreService.updateData('data', job.id, job);
+    this.getJobs();
+  }
+
+  async deleteJob(id: string): Promise<void> {
+    await this.firestoreService.deleteData('data', id);
+    this.getJobs();
   }
 }

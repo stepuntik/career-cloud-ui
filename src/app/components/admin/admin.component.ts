@@ -13,23 +13,30 @@ export class AdminComponent implements OnInit {
   jobs: Job[] = [];
   showForm: boolean = false;
   symbol: string = '+';
+  selectedJob: Job | null = null;
 
   constructor(private jobService: JobService) {}
 
   ngOnInit(): void {
     this.jobService.jobs$.subscribe((jobs) => {
       this.jobs = jobs;
-      console.log(this.jobs);
     });
   }
 
-  handleFormSubmit(): void {
-    this.showForm = false;
-    this.symbol = '+';
-  }
-
-  addJob(): void {
+  toggleForm(): void {
     this.showForm = !this.showForm;
     this.symbol = this.showForm ? '-' : '+';
+  }
+
+  onEditJob(job: Job): void {
+    this.selectedJob = job;
+    this.showForm = true;
+    console.log(job);
+  }
+
+  onFormSubmitted(): void {
+    this.showForm = false;
+    this.symbol = '+';
+    this.selectedJob = null;
   }
 }

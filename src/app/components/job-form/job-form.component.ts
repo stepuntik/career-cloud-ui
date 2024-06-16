@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobService } from 'src/app/services/job.service';
 
@@ -10,11 +16,21 @@ import { Job } from 'src/app/interfaces/job.interface';
   styleUrls: ['./job-form.component.css'],
 })
 export class JobFormComponent {
-  jobForm!: FormGroup;
-
+  @Input() jobToEdit: Job | null = null;
   @Output() formSubmitted = new EventEmitter<void>();
+  jobForm!: FormGroup; //TODO:
 
   constructor(private fb: FormBuilder, private jobService: JobService) {
+    this.createForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['jobToEdit'] && changes['jobToEdit'].currentValue) {
+      this.populateForm(changes['jobToEdit'].currentValue);
+    }
+  }
+
+  createForm(): void {
     this.jobForm = this.fb.group({
       jobTitle: [
         '',
@@ -60,9 +76,31 @@ export class JobFormComponent {
     });
   }
 
+  populateForm(job: Job): void {
+    this.jobForm.patchValue({
+      jobTitle: job.jobTitle,
+      companyName: job.companyName,
+      location: job.location,
+      jobType: job.jobType,
+      jobDescription: job.jobDescription,
+    });
+
+    this.skills.clear();
+
+    job.skills.forEach((skill) => {
+      this.skills.push(
+        this.fb.control(skill, [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(50),
+        ])
+      );
+    });
+  }
+
   submitForm(): void {
     if (this.jobForm.valid) {
-      const newJob: Job = {
+      const jobData: Omit<Job, 'id'> = {
         companyName: this.jobForm.value.companyName,
         jobDescription: this.jobForm.value.jobDescription,
         jobTitle: this.jobForm.value.jobTitle,
@@ -71,7 +109,13 @@ export class JobFormComponent {
         jobType: this.jobForm.value.jobType,
       };
 
-      this.jobService.addJob(newJob);
+      if (this.jobToEdit) {
+        const updatedJob: Job = { ...jobData, id: this.jobToEdit.id };
+        this.jobService.updateJob(updatedJob);
+      } else {
+        this.jobService.addJob(jobData);
+      }
+
       this.formSubmitted.emit();
       this.jobForm.reset();
     } else {

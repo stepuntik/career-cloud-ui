@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Job } from 'src/app/interfaces/job.interface';
 
 @Component({
@@ -6,11 +6,12 @@ import { Job } from 'src/app/interfaces/job.interface';
   templateUrl: './job-list.component.html',
   styleUrls: ['./job-list.component.css'],
 })
-export class JobListComponent implements OnInit {
+export class JobListComponent {
   @Input() jobs: Job[] = [];
   @Input() isAdminView: boolean = false;
+  @Output() editJobEvent = new EventEmitter<Job>();
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  onEditJob(job: Job): void {
+    this.editJobEvent.emit(job);
+  }
 }

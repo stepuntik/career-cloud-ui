@@ -13,11 +13,9 @@ export class NavbarComponent implements OnInit {
   user: firebase.User | null = null;
 
   constructor(public afAuth: AngularFireAuth, private router: Router) {}
-
   ngOnInit(): void {
     this.afAuth.authState.subscribe((user) => {
       this.user = user;
-      console.log(this.user);
     });
   }
 
