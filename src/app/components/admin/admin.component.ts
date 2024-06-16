@@ -22,6 +22,11 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  handleFormSubmit(): void {
+    this.showForm = false;
+    this.symbol = '+';
+  }
+
   addJob(): void {
     this.showForm = !this.showForm;
     this.symbol = this.showForm ? '-' : '+';

@@ -2,23 +2,108 @@
   <div>
     <label for="jobTitle">Job Title</label>
     <input type="text" id="jobTitle" formControlName="jobTitle" />
+    <div
+      *ngIf="
+        jobForm.get('jobTitle')?.touched && jobForm.get('jobTitle')?.invalid
+      "
+      class="error"
+    >
+      <div *ngIf="jobForm.get('jobTitle')?.hasError('required')">
+        Job Title is required.
+      </div>
+      <div *ngIf="jobForm.get('jobTitle')?.hasError('minlength')">
+        Job Title must be at least 3 characters long.
+      </div>
+      <div *ngIf="jobForm.get('jobTitle')?.hasError('maxlength')">
+        Job Title cannot be more than 50 characters long.
+      </div>
+    </div>
   </div>
+
   <div>
     <label for="companyName">Company Name</label>
     <input type="text" id="companyName" formControlName="companyName" />
+    <div
+      *ngIf="
+        jobForm.get('companyName')?.touched &&
+        jobForm.get('companyName')?.invalid
+      "
+      class="error"
+    >
+      <div *ngIf="jobForm.get('companyName')?.hasError('required')">
+        Company Name is required.
+      </div>
+      <div *ngIf="jobForm.get('companyName')?.hasError('minlength')">
+        Company Name must be at least 2 characters long.
+      </div>
+      <div *ngIf="jobForm.get('companyName')?.hasError('maxlength')">
+        Company Name cannot be more than 50 characters long.
+      </div>
+    </div>
   </div>
+
   <div>
     <label for="location">Location</label>
     <input type="text" id="location" formControlName="location" />
+    <div
+      *ngIf="
+        jobForm.get('location')?.touched && jobForm.get('location')?.invalid
+      "
+      class="error"
+    >
+      <div *ngIf="jobForm.get('location')?.hasError('required')">
+        Location is required.
+      </div>
+      <div *ngIf="jobForm.get('location')?.hasError('minlength')">
+        Location must be at least 2 characters long.
+      </div>
+      <div *ngIf="jobForm.get('location')?.hasError('maxlength')">
+        Location cannot be more than 50 characters long.
+      </div>
+    </div>
   </div>
+
   <div>
     <label for="jobType">Job Type</label>
     <input type="text" id="jobType" formControlName="jobType" />
+    <div
+      *ngIf="jobForm.get('jobType')?.touched && jobForm.get('jobType')?.invalid"
+      class="error"
+    >
+      <div *ngIf="jobForm.get('jobType')?.hasError('required')">
+        Job Type is required.
+      </div>
+      <div *ngIf="jobForm.get('jobType')?.hasError('minlength')">
+        Job Type must be at least 2 characters long.
+      </div>
+      <div *ngIf="jobForm.get('jobType')?.hasError('maxlength')">
+        Job Type cannot be more than 50 characters long.
+      </div>
+    </div>
   </div>
+
   <div>
     <label for="jobDescription">Job Description</label>
     <textarea id="jobDescription" formControlName="jobDescription"></textarea>
+    <div
+      *ngIf="
+        jobForm.get('jobDescription')?.touched &&
+        jobForm.get('jobDescription')?.invalid
+      "
+      class="error"
+    >
+      <div *ngIf="jobForm.get('jobDescription')?.hasError('required')">
+        Job Description is required.
+      </div>
+      <div *ngIf="jobForm.get('jobDescription')?.hasError('minlength')">
+        Job Description must be at least 10 characters long.
+      </div>
+      <div *ngIf="jobForm.get('jobDescription')?.hasError('maxlength')">
+        Job Description cannot be more than 1000 characters long.
+      </div>
+    </div>
   </div>
+
   <div formArrayName="skills" class="skills">
     <label for="skills">Skills</label>
     <div
@@ -27,8 +112,18 @@
     >
       <input type="text" [formControlName]="i" />
       <button type="button" (click)="removeSkill(i)">Remove Skill</button>
+      <div *ngIf="skill?.touched && skill?.invalid" class="error">
+        <div *ngIf="skill?.hasError('required')">Skill is required.</div>
+        <div *ngIf="skill?.hasError('minlength')">
+          Skill must be at least 2 characters long.
+        </div>
+        <div *ngIf="skill?.hasError('maxlength')">
+          Skill cannot be more than 50 characters long.
+        </div>
+      </div>
     </div>
     <button type="button" (click)="addSkill()">Add Skill</button>
   </div>
+
   <button type="submit">Create Job</button>
 </form>

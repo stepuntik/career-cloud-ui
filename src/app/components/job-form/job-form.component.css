@@ -69,3 +69,9 @@
 .job-form button[type="submit"]:hover {
   background-color: #45a049;
 }
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+}

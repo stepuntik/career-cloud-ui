@@ -4,7 +4,10 @@
   <h3>Add New Job</h3>
   <button class="add-button" (click)="addJob()">{{ symbol }}</button>
 </div>
-<app-job-form *ngIf="showForm"></app-job-form>
+<app-job-form
+  *ngIf="showForm"
+  (formSubmitted)="handleFormSubmit()"
+></app-job-form>
 
 <h3>Existing Jobs</h3>
 
