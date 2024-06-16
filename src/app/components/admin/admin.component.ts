@@ -12,7 +12,6 @@ import { Job } from 'src/app/interfaces/job.interface';
 export class AdminComponent implements OnInit {
   jobs: Job[] = [];
   showForm: boolean = false;
-  symbol: string = '+';
   selectedJob: Job | null = null;
 
   constructor(private jobService: JobService) {}
@@ -25,18 +24,25 @@ export class AdminComponent implements OnInit {
 
   toggleForm(): void {
     this.showForm = !this.showForm;
-    this.symbol = this.showForm ? '-' : '+';
   }
 
   onEditJob(job: Job): void {
     this.selectedJob = job;
     this.showForm = true;
-    console.log(job);
   }
 
   onFormSubmitted(): void {
     this.showForm = false;
-    this.symbol = '+';
     this.selectedJob = null;
+    //TODO: show modal
+  }
+
+  onFormCancelled(): void {
+    this.showForm = false;
+    this.selectedJob = null;
+  }
+
+  get symbol(): string {
+    return this.showForm ? '-' : '+';
   }
 }

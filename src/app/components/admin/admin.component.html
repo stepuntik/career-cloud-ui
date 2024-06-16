@@ -8,6 +8,7 @@
   *ngIf="showForm"
   [jobToEdit]="selectedJob"
   (formSubmitted)="onFormSubmitted()"
+  (formCancelled)="onFormCancelled()"
 ></app-job-form>
 
 <h3>Existing Jobs</h3>

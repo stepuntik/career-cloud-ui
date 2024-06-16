@@ -8,12 +8,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.job-form label {
+.form-label {
   font-weight: bold;
 }
 
-.job-form input[type="text"],
-.job-form textarea {
+.form-input {
   width: 100%;
   padding: 8px;
   margin: 8px 0;
@@ -23,40 +22,70 @@
   font-size: 16px;
 }
 
-.job-form textarea {
+.form-textarea {
   height: 120px;
   resize: vertical;
 }
 
-.job-form .skills {
+.skills {
   margin-bottom: 16px;
 }
 
-.job-form .skills .skill-item {
+.add-skill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-skill-button:hover {
+  background-color: #0056b3;
+}
+
+.add-skill-button svg,
+.remove-skill-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.skill-item {
   display: flex;
   align-items: center;
 }
 
-.job-form .skills .skill-item input[type="text"] {
+.skill-item .form-input {
   flex: 1;
   margin-right: 8px;
 }
 
-.job-form .skills .skill-item button {
-  background-color: #f44336;
+.remove-skill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background-color: #dc3545;
   color: white;
   border: none;
-  padding: 8px 12px;
+  border-radius: 50%;
+  font-size: 24px;
   cursor: pointer;
-  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.job-form .skills .skill-item button:hover {
-  background-color: #d32f2f;
+.remove-skill-button:hover {
+  background-color: #c82333;
 }
 
-.job-form button[type="submit"] {
-  background-color: #4caf50;
+.form-button {
   color: white;
   border: none;
   padding: 12px 20px;
@@ -64,10 +93,23 @@
   border-radius: 4px;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  margin-right: 10px;
 }
 
-.job-form button[type="submit"]:hover {
+.add-button {
+  background-color: #4caf50;
+}
+
+.add-button:hover {
   background-color: #45a049;
+}
+
+.cancel-button {
+  background-color: #ff0000;
+}
+
+.cancel-button:hover {
+  background-color: #d40000;
 }
 
 .error {

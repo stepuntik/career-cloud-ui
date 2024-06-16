@@ -15,10 +15,14 @@ import { Job } from 'src/app/interfaces/job.interface';
   templateUrl: './job-form.component.html',
   styleUrls: ['./job-form.component.css'],
 })
+
+// TODO: IF FORM IS INVALID, SHOW Message
 export class JobFormComponent {
   @Input() jobToEdit: Job | null = null;
   @Output() formSubmitted = new EventEmitter<void>();
+  @Output() formCancelled = new EventEmitter<void>();
   jobForm!: FormGroup; //TODO:
+  jobTypes: string[] = ['Full stack', 'Front-end', 'Back-end'];
 
   constructor(private fb: FormBuilder, private jobService: JobService) {
     this.createForm();
@@ -56,14 +60,7 @@ export class JobFormComponent {
           Validators.maxLength(50),
         ],
       ],
-      jobType: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(50),
-        ],
-      ],
+      jobType: ['Full stack', [Validators.required]],
       jobDescription: [
         '',
         [
@@ -98,6 +95,13 @@ export class JobFormComponent {
     });
   }
 
+  cancelForm(): void {
+    this.jobToEdit = null;
+    this.jobForm.reset();
+    this.skills.clear();
+    this.formCancelled.emit();
+  }
+
   submitForm(): void {
     if (this.jobForm.valid) {
       const jobData: Omit<Job, 'id'> = {
@@ -119,7 +123,7 @@ export class JobFormComponent {
       this.formSubmitted.emit();
       this.jobForm.reset();
     } else {
-      // Form is invalid, handle accordingly
+      // Form is invalid, handle accordingly TODO:
       console.error('Form is invalid');
     }
   }

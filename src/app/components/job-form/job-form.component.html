@@ -1,7 +1,12 @@
 <form [formGroup]="jobForm" (ngSubmit)="submitForm()" class="job-form">
-  <div>
-    <label for="jobTitle">Job Title</label>
-    <input type="text" id="jobTitle" formControlName="jobTitle" />
+  <div class="form-group">
+    <label for="jobTitle" class="form-label">Job Title</label>
+    <input
+      type="text"
+      id="jobTitle"
+      formControlName="jobTitle"
+      class="form-input"
+    />
     <div
       *ngIf="
         jobForm.get('jobTitle')?.touched && jobForm.get('jobTitle')?.invalid
@@ -20,9 +25,14 @@
     </div>
   </div>
 
-  <div>
-    <label for="companyName">Company Name</label>
-    <input type="text" id="companyName" formControlName="companyName" />
+  <div class="form-group">
+    <label for="companyName" class="form-label">Company Name</label>
+    <input
+      type="text"
+      id="companyName"
+      formControlName="companyName"
+      class="form-input"
+    />
     <div
       *ngIf="
         jobForm.get('companyName')?.touched &&
@@ -42,9 +52,14 @@
     </div>
   </div>
 
-  <div>
-    <label for="location">Location</label>
-    <input type="text" id="location" formControlName="location" />
+  <div class="form-group">
+    <label for="location" class="form-label">Location</label>
+    <input
+      type="text"
+      id="location"
+      formControlName="location"
+      class="form-input"
+    />
     <div
       *ngIf="
         jobForm.get('location')?.touched && jobForm.get('location')?.invalid
@@ -63,9 +78,11 @@
     </div>
   </div>
 
-  <div>
-    <label for="jobType">Job Type</label>
-    <input type="text" id="jobType" formControlName="jobType" />
+  <div class="form-group">
+    <label for="jobType" class="form-label">Job Type</label>
+    <select id="jobType" formControlName="jobType" class="form-input">
+      <option *ngFor="let type of jobTypes" [value]="type">{{ type }}</option>
+    </select>
     <div
       *ngIf="jobForm.get('jobType')?.touched && jobForm.get('jobType')?.invalid"
       class="error"
@@ -73,18 +90,16 @@
       <div *ngIf="jobForm.get('jobType')?.hasError('required')">
         Job Type is required.
       </div>
-      <div *ngIf="jobForm.get('jobType')?.hasError('minlength')">
-        Job Type must be at least 2 characters long.
-      </div>
-      <div *ngIf="jobForm.get('jobType')?.hasError('maxlength')">
-        Job Type cannot be more than 50 characters long.
-      </div>
     </div>
   </div>
 
-  <div>
-    <label for="jobDescription">Job Description</label>
-    <textarea id="jobDescription" formControlName="jobDescription"></textarea>
+  <div class="form-group">
+    <label for="jobDescription" class="form-label">Job Description</label>
+    <textarea
+      id="jobDescription"
+      formControlName="jobDescription"
+      class="form-input form-textarea"
+    ></textarea>
     <div
       *ngIf="
         jobForm.get('jobDescription')?.touched &&
@@ -104,14 +119,28 @@
     </div>
   </div>
 
-  <div formArrayName="skills" class="skills">
-    <label for="skills">Skills</label>
+  <div formArrayName="skills" class="form-group skills">
+    <label for="skills" class="form-label">Skills</label>
     <div
       *ngFor="let skill of skills.controls; let i = index"
       class="skill-item"
     >
-      <input type="text" [formControlName]="i" />
-      <button type="button" (click)="removeSkill(i)">Remove Skill</button>
+      <input type="text" [formControlName]="i" class="form-input" />
+      <button
+        type="button"
+        (click)="removeSkill(i)"
+        class="remove-skill-button"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+        >
+          <path fill="white" d="M19 13H5v-2h14v2z" />
+          <path fill="none" d="M0 0h24v24H0z" />
+        </svg>
+      </button>
       <div *ngIf="skill?.touched && skill?.invalid" class="error">
         <div *ngIf="skill?.hasError('required')">Skill is required.</div>
         <div *ngIf="skill?.hasError('minlength')">
@@ -122,8 +151,27 @@
         </div>
       </div>
     </div>
-    <button type="button" (click)="addSkill()">Add Skill</button>
+    <button type="button" (click)="addSkill()" class="add-skill-button">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+      >
+        <path fill="white" d="M12 5v6h6v2h-6v6h-2v-6H4v-2h6V5z" />
+        <path fill="none" d="M0 0h24v24H0z" />
+      </svg>
+    </button>
   </div>
 
-  <button type="submit">Create Job</button>
+  <button type="submit" class="form-button add-button">
+    {{ jobToEdit ? "Update Job" : "Add Job" }}
+  </button>
+  <button
+    type="button"
+    (click)="cancelForm()"
+    class="form-button cancel-button"
+  >
+    Cancel
+  </button>
 </form>
