@@ -19,6 +19,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.jobService.jobs$.subscribe((jobs) => {
       this.jobs = jobs;
+      console.log(this.jobs);
     });
   }
 

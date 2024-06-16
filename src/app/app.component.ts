@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FirestoreService } from './services/firebase.service';
+import { FirestoreService } from './services/firestore.service';
 import { JobService } from './services/job.service';
 
 import { Job } from './interfaces/job.interface';
@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
     private jobService: JobService
   ) {}
   ngOnInit(): void {
-    this.firestoreService.getData('data').subscribe((data) => {
-      this.jobService.setJobs(data);
+    this.jobService.jobs$.subscribe((jobs) => {
+      this.jobs = jobs;
     });
   }
 }

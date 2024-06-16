@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JobService } from 'src/app/services/job.service';
+
 import { Job } from 'src/app/interfaces/job.interface';
 
 @Component({
@@ -12,7 +14,7 @@ export class JobFormComponent {
 
   @Output() formSubmitted = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private jobService: JobService) {
     this.jobForm = this.fb.group({
       jobTitle: [
         '',
@@ -68,10 +70,8 @@ export class JobFormComponent {
         skills: this.jobForm.value.skills,
         jobType: this.jobForm.value.jobType,
       };
-      // You can send newJob to FirestoreService or JobService to add to the database
-      console.log('New Job:', newJob);
-      // Example: this.firestoreService.addData('jobs', newJob);
-      // Clear the form after submission
+
+      this.jobService.addJob(newJob);
       this.formSubmitted.emit();
       this.jobForm.reset();
     } else {
@@ -80,12 +80,10 @@ export class JobFormComponent {
     }
   }
 
-  // Getter for skills form array
   get skills() {
     return this.jobForm.get('skills') as FormArray;
   }
 
-  // Function to add skills dynamically
   addSkill() {
     this.skills.push(
       this.fb.control('', [
@@ -96,7 +94,6 @@ export class JobFormComponent {
     );
   }
 
-  // Function to remove a skill
   removeSkill(index: number) {
     this.skills.removeAt(index);
   }
