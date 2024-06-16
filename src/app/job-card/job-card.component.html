@@ -1,4 +1,4 @@
-<div class="job-card">
+<li class="job-card">
   <h3 class="job-title">{{ job.jobTitle }}</h3>
   <h4 class="company-name">{{ job.companyName }}</h4>
   <p class="location"><strong>Location:</strong> {{ job.location }}</p>
@@ -10,4 +10,4 @@
       <li *ngFor="let skill of job.skills">{{ skill }}</li>
     </ul>
   </div>
-</div>
+</li>

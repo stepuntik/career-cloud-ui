@@ -2,6 +2,16 @@
   <ul>
     <li><a routerLink="/">Home</a></li>
     <li><a routerLink="/admin">Admin</a></li>
+    <li *ngIf="user; else loginButton">
+      Welcome, {{ user.displayName }}!
+      <button (click)="logout()">Logout</button>
+    </li>
+    <ng-template #loginButton>
+      <li>
+        Welome, Guest!
+        <button (click)="loginWithGoogle()">Login with Google</button>
+      </li>
+    </ng-template>
   </ul>
 </nav>
 

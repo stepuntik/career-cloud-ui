@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobCardComponent } from './job-card/job-card.component';
 
 @NgModule({
@@ -22,6 +22,7 @@ import { JobCardComponent } from './job-card/job-card.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
