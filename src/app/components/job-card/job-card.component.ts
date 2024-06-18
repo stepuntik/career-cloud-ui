@@ -23,8 +23,8 @@ export class JobCardComponent implements OnInit {
   }
 
   editJob(): void {
-    // console.log('Edit job clicked in job-card', this.job);
     this.editJobEvent.emit(this.job);
+    window.scrollTo({ top: 100, behavior: 'smooth' });
   }
 
   deleteJob(): void {

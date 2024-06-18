@@ -1,5 +1,9 @@
 .job-card {
-  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 450px;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
@@ -31,4 +35,35 @@
 .skills ul {
   list-style-type: disc;
   margin: 0;
+}
+
+.action-buttons {
+  margin-top: auto;
+}
+
+.card-button {
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.edit-button {
+  background-color: #007bff;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  background-color: #ff0000;
+}
+
+.delete-button:hover {
+  background-color: #d40000;
 }

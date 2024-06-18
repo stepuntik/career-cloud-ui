@@ -10,8 +10,10 @@
       <li *ngFor="let skill of job.skills">{{ skill }}</li>
     </ul>
   </div>
-  <div *ngIf="isAdminView">
-    <button (click)="editJob()">Edit</button>
-    <button (click)="deleteJob()">Delete</button>
+  <div class="action-buttons" *ngIf="isAdminView">
+    <button class="card-button edit-button" (click)="editJob()">Edit</button>
+    <button class="card-button delete-button" (click)="deleteJob()">
+      Delete
+    </button>
   </div>
 </li>

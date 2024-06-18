@@ -15,13 +15,11 @@ import { Job } from 'src/app/interfaces/job.interface';
   templateUrl: './job-form.component.html',
   styleUrls: ['./job-form.component.css'],
 })
-
-// TODO: IF FORM IS INVALID, SHOW Message
 export class JobFormComponent {
   @Input() jobToEdit: Job | null = null;
   @Output() formSubmitted = new EventEmitter<void>();
   @Output() formCancelled = new EventEmitter<void>();
-  jobForm!: FormGroup; //TODO:
+  jobForm: FormGroup = new FormGroup({});
   jobTypes: string[] = ['Full stack', 'Front-end', 'Back-end'];
 
   constructor(private fb: FormBuilder, private jobService: JobService) {
@@ -123,8 +121,7 @@ export class JobFormComponent {
       this.formSubmitted.emit();
       this.jobForm.reset();
     } else {
-      // Form is invalid, handle accordingly TODO:
-      console.error('Form is invalid');
+      alert('Form is invalid');
     }
   }
 

@@ -34,7 +34,7 @@ export class AdminComponent implements OnInit {
   onFormSubmitted(): void {
     this.showForm = false;
     this.selectedJob = null;
-    //TODO: show modal
+    alert('Job saved!');
   }
 
   onFormCancelled(): void {
