@@ -1,7 +1,7 @@
 <h2>Admin Page</h2>
 
 <div class="add-job">
-  <h3>Add New Job</h3>
+  <h3>Add/Edit Job</h3>
   <button class="add-button" (click)="toggleForm()">{{ symbol }}</button>
 </div>
 <app-job-form
@@ -9,10 +9,9 @@
   [jobToEdit]="selectedJob"
   (formSubmitted)="onFormSubmitted()"
   (formCancelled)="onFormCancelled()"
-  [@slideInOut]
 ></app-job-form>
 
-<h3>Existing Jobs</h3>
+<h3>Jobs in Database</h3>
 
 <app-job-list
   [jobs]="jobs"

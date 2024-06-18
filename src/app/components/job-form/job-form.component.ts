@@ -19,7 +19,7 @@ export class JobFormComponent {
   @Input() jobToEdit: Job | null = null;
   @Output() formSubmitted = new EventEmitter<void>();
   @Output() formCancelled = new EventEmitter<void>();
-  jobForm: FormGroup = new FormGroup({});
+  jobForm!: FormGroup;
   jobTypes: string[] = ['Full stack', 'Front-end', 'Back-end'];
 
   constructor(private fb: FormBuilder, private jobService: JobService) {
